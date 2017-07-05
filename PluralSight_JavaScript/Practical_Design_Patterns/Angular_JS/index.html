@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <meta charset="utf-8">
+ <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
+   <link rel="stylesheet" href="style.css" />
+   <script src="./script.js"></script>
+   <script src="./task.js"></script>
+   <!-- <script src="./urgentTask.js"></script>
+   <script src="./taskRepo.js"></script>
+   <script src="./repoDecorator.js"></script> -->
+    <title></title>
+  </head>
+
+  <body  ng-app='taskManager'>
+    <h1>Task Manager</h1>
+    <div ng-controller='taskCtrl as ctrl'>
+      <div ng-repeat='task in ctrl.tasks'>
+        <input type='checkbox' ng-checked='task.completed'
+        ng-click='task.complete()'>
+        {{task.name}}</div>
+    </div>
+  </body>
+</html>
