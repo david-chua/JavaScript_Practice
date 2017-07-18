@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title> Drawing SVG Shapes with D3</title>
+    <script src="http://d3js.org/d3.v3.min.js"> </script>
+  </head>
+  <body>
+    <script>
+    var h = 100;
+    var w = 400;
+    var ds;
+    var salesTotal = 0.0;
+    var salesAvg = 0.0;
+    var metrics = [];
+
+function buildLineCSV() {
+    var lne = d3.svg.line()
+          .x(function(d) { return ((d.month - 20130001)/3.25);})
+          .y(function(d) { return h - d.sales;})
+          .interpolate("linear")
+
+    var svg = d3.select("body").append("svg").attr({ width: w, height: h});
+
+    svg.append("path")
+        .attr({
+        d: lne(ds),
+        "stroke": "purple",
+        "stroke-width": 2,
+        "fill": "none"
+      })
+    }
+
+
+
+d3.json("MonthlySales.json", function(error, data) {
+  if (error) {
+    console.log(error)
+  } else {
+    console.log(data);
+    ds = data;
+  }
+  
+  buildLineCSV();
+  // showTotals();
+})
+    </script>
+
+</body>
+
+</html>
